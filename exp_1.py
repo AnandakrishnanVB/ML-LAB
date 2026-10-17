@@ -28,7 +28,7 @@ X_test_norm=(X_test-mean)/std
 print("Training Data Mean :",mean)
 print("Training Data Std  :",std)
 
-# Initialize parameters
+# Initialize parameters.
 b0=0
 b1=0
 learning_rate=0.01
@@ -36,7 +36,7 @@ iteration=1000
 n=len(X_train_norm)
 cost=[]
 
-# Gradient Descent
+# Gradient Descent.
 for i in range(iteration):
     y_pred=b0+b1*X_train_norm
     mse=np.mean((y_train-y_pred)**2)
