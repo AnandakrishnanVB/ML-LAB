@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error,r2_score
@@ -39,7 +39,29 @@ for i in range(iteration):
     cost.append(mse)
     #partial derivatives
     db0 = (-2/n)*np.sum(y_train - y_pred)
-    db1 = (-2/n)*np.sum((y_train-y_pred)**2)
+    db1 = (-2/n)*np.sum(x_train_norm*(y_train-y_pred))
     #update
+    b0 = b0 - learning_rate*db0
+    b1 = b1 - learning_rate*db1
+y_pred_gd = b0+b1*x_test_norm
 
+#gradient graph
+plt.scatter(x_test_norm,y_test,color='blue',label='actual data')
+plt.plot(x_test_norm,y_pred_gd,color='red',label='regression line')
+plt.xlabel("Average number of rooms")
+plt.ylabel("median house value")
+plt.title("Gradient Descent Graph")
+plt.legend()
+plt.show()
+
+#cost convergence graph
+plt.plot(range(iteration),cost,color="green")
+plt.xlabel("Iteration")
+plt.ylabel("cost")
+plt.legend()
+plt.show()
+
+print("----Gradient desent----")
+print("MSE:",mean_squared_error(y_test,y_pred_gd))
+print("R2 score:",r2_score(y_test,y_pred_gd))
 
