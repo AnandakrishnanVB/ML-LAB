@@ -1,0 +1,18 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.metrics import mean_squared_error,r2_score
+
+df = pd.read_csv("../data/auto_mpg.csv")
+
+df.dropna(inplace=True)
+
+x = df[["displacement"]]
+y = df['mpg']
+
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = 0.2,random_state=42)
+
