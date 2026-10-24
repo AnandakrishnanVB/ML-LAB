@@ -65,3 +65,30 @@ print("----Gradient desent----")
 print("MSE:",mean_squared_error(y_test,y_pred_gd))
 print("R2 score:",r2_score(y_test,y_pred_gd))
 
+#now the Linear regression
+
+model = LinearRegression()
+model.fit(x_train_norm.reshape(-1,1),y_train)
+y_predict = model.predict(x_test_norm.reshape(-1,1))
+
+MSE = mean_squared_error(y_test,y_predict)
+R2 = r2_score(y_test,y_predict)
+
+#least squares result
+print("---- Least squares ----")
+print("MSE:",MSE)
+print("R2:",R2)
+print("Coefficent:",model.coef_[0])
+print("Intercept:",model.intercept_)
+
+#linear graph
+m = model.coef_[0]
+c = model.intercept_
+plt.scatter(x_test,y_test,color="blue",label="Actual data")
+x_line = np.sort(x_test)
+y_line = m*x_line+c
+plt.plot(x_line,y_line,color="red",label="regerssion line")
+plt.xlabel("Average no of roooms")
+plt.ylabel("median house value")
+plt.legend()
+plt.show()
