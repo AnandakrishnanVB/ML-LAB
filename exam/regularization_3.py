@@ -1,10 +1,18 @@
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split,GridSearchCV
 from sklearn.linear_model import LinearRegression,Ridge,Lasso
+#Linear Regression predicts continuous values based on input features.
+# Ridge Regression uses L2 regularization to reduce overfitting by penalizing large coefficients.
+# Lasso Regression uses L1 regularization and can make some coefficients zero to remove unimportant features.
+# Regularization helps prevent overfitting by penalizing model complexity.
 
 from sklearn.metrics import mean_squared_error,r2_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
+# StandardScaler scales features to have a mean of 0 and a standard deviation of 1.
+# Pipeline combines preprocessing steps and a machine learning model into a single workflow.
+
+
 
 data = load_diabetes()
 x = data.data
@@ -22,9 +30,9 @@ print("Linear mse:",linear_mse)
 print("Linear r2:",linear_r2)
 
 
-#We are doing basically that, a pipeline object created that -
-#combines preprocessing steps and a machine learning model into a single workflow
-#Then creates the prameter dict of list
+#We are basically doing that, a pipeline object created that combines-
+#preprocessing steps and a machine learning model into a single workflow.
+#Then creates the prameter dict of list.
 #Then pass these values to `GridSearchCV` to automate the process of finding the best `alpha` value using 5-fold cross-validation.
 
 
@@ -34,18 +42,20 @@ ridge_pipeline = Pipeline([ #The object
     ("scaler",StandardScaler()),
     ("ridge" ,Ridge()) #ATTENTION -> In here we use "ridge" as the step name So use that same name in the params too
 ])
-
+# Alpha controls the strength of regularization; higher alpha generally means stronger regularization.
 ridge_params = {
     "ridge__alpha" :[0.01,0.1,1,10,100] #In here (xx__alpha) should match the step name.In my case it is "ridge" so it will become "ridge__alpha"
     #Also use dounle Underscore (__)
 }
 
-ridge_grid = GridSearchCV(  #Used to automate the model and find best value
+# GridSearchCV finds the best hyperparameter by testing different values using cross-validation.
+# Cross-validation evaluates a model using different splits of the training data.
+ridge_grid = GridSearchCV(  
     ridge_pipeline, #object
     ridge_params, #params
     cv=5, #Number of cross-validation folds(CV)
     scoring='neg_mean_squared_error' #Metric used to compare models 
-    #Negative used here beacuse the gridSearchCV follows greater value is better but for MSE it is reverse
+    #Negative used here beacuse the gridSearchCV follows the rule -> "greater value is better" but for MSE it is reverse
 )
 
 ridge_grid.fit(x_train,y_train)
@@ -54,5 +64,6 @@ ridge_prediction = ridge_grid.predict(x_test)
 ridge_mse = mean_squared_error(y_test,ridge_prediction)
 ridge_r2 = r2_score(y_test,ridge_prediction)
 
+print("best alpa",ridge_grid.best_params_)
 print("Ridge mse:",ridge_mse)
 print("Ridge R2:",ridge_r2)
