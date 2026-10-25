@@ -26,6 +26,7 @@ linear_predict = linear_model.predict(x_test)
 linear_mse = mean_squared_error(y_test,linear_predict)
 linear_r2 = r2_score(y_test,linear_predict)
 
+print("LINEAR REGRESSION")
 print("Linear mse:",linear_mse)
 print("Linear r2:",linear_r2)
 
@@ -64,7 +65,33 @@ ridge_prediction = ridge_grid.predict(x_test)
 ridge_mse = mean_squared_error(y_test,ridge_prediction)
 ridge_r2 = r2_score(y_test,ridge_prediction)
 
-print("best alpa",ridge_grid.best_params_)
+print("RIDGE REGRESSION")
+print("best alpa",ridge_grid.best_params_['ridge__alpha'])
 print("Ridge mse:",ridge_mse)
 print("Ridge R2:",ridge_r2)
 
+#Now the lasso
+lasso_pipeline = Pipeline([
+    ('scaler',StandardScaler()),
+    ('lasso',Lasso(max_iter=1000)) 
+])
+
+lasso_param = {
+    "lasso__alpha" : [0.01,0.1,1,10,100]
+}
+
+lasso_grid = GridSearchCV(
+    lasso_pipeline,
+    lasso_param,
+    cv=5,
+    scoring="neg_mean_squared_error"
+)
+lasso_grid.fit(x_train,y_train)
+lasso_predict = lasso_grid.predict(x_test)
+lasso_mse = mean_squared_error(y_test,lasso_predict)
+lasso_r2 = r2_score(y_test,lasso_predict)
+
+print("LASSO REGRESSION")
+print("Best alpha:",lasso_grid.best_params_['lasso__alpha'])
+print("lasso mse:",lasso_mse)
+print("Lasso r2:",lasso_r2)
