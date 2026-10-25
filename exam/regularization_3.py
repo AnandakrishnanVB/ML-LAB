@@ -67,3 +67,4 @@ ridge_r2 = r2_score(y_test,ridge_prediction)
 print("best alpa",ridge_grid.best_params_)
 print("Ridge mse:",ridge_mse)
 print("Ridge R2:",ridge_r2)
+
