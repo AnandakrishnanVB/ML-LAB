@@ -45,7 +45,7 @@ ridge_pipeline = Pipeline([ #The object
 # Alpha controls the strength of regularization; higher alpha generally means stronger regularization.
 ridge_params = {
     "ridge__alpha" :[0.01,0.1,1,10,100] #In here (xx__alpha) should match the step name.In my case it is "ridge" so it will become "ridge__alpha"
-    #Also use dounle Underscore (__)
+    #Also use double Underscore (__)
 }
 
 # GridSearchCV finds the best hyperparameter by testing different values using cross-validation.
