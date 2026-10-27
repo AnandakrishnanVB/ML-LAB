@@ -67,3 +67,4 @@ print("----PARAMETER ESTIMATES----")
 print("MLE coefficient:",model.coef_)
 print("L2 Coefficent:",l2_model.coef_)
 print("L1 coefficient:",l1_model.coef_)
+
