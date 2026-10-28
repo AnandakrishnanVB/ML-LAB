@@ -1,9 +1,9 @@
-from tensorflow.keras.datasets import fashion_mnists
+from tensorflow.keras.datasets import fashion_mnist
 from sklearn.metrics import accuracy_score,f1_score
 from sklearn.neighbors import KNeighborsClassifier
 
 # fashion mist returns 2 pair of values.
-(x_train,y_train),(x_test,y_test) = fashion_mnists.load_data()
+(x_train,y_train),(x_test,y_test) = fashion_mnist.load_data()
 
 #Use smaller dataset for knn
 x_train = x_train[:10000]
