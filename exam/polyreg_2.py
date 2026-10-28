@@ -25,6 +25,7 @@ for degree in range(1,6):
     model = LinearRegression()
     model.fit(x_train_poly,y_train)
     y_poly_pred = model.predict(x_test_poly)
+    
     mse = mean_squared_error(y_test,y_poly_pred)
     r2 = r2_score(y_test,y_poly_pred)
     result.append([degree,mse,r2])
@@ -37,6 +38,7 @@ for degree in range(1,6):
         300).reshape(-1,1)
     x_plot_poly = poly.transform(x_plot)
     y_plot = model.predict(x_plot_poly)
+
     plt.scatter(x,y,color="blue",label="actual data")
     plt.plot(x_plot,y_plot,color='red',label=f"Regression with degree {degree}")
     plt.title(f"Degree {degree}")
