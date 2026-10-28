@@ -18,6 +18,7 @@ cv = CountVectorizer(stop_words="english")
 x_train = cv.fit_transform(train.data)
 x_test = cv.transform(test.data)
 
+#The targer values already given as numbers.
 y_train = train.target
 y_test = test.target
 
