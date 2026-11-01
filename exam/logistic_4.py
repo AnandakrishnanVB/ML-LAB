@@ -36,7 +36,7 @@ mle_accuracy = accuracy_score(y_test,mle_pred)
 
 l2_model = LogisticRegression(
     penalty='l2',
-    C=1,
+    C=1,#Strength or regularization.Lower the number higher the regularization.
     max_iter=1000
 )
 

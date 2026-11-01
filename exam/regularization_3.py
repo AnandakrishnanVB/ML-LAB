@@ -39,7 +39,7 @@ print("Linear r2:",linear_r2)
 
 
 #Ridge pipeline
-ridge_pipeline = Pipeline([ #The object
+ridge_pipeline = Pipeline([ #It eexpect a list
     ("scaler",StandardScaler()),
     ("ridge" ,Ridge()) #ATTENTION -> In here we use "ridge" as the step name So use that same name in the params too
 ])
