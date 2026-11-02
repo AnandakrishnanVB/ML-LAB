@@ -73,8 +73,8 @@ plot_tree(
 ax.set_title("Customer Segmentation using Decision Tree", pad=15)
 
 plt.savefig(
-    "dtree.png",
-    dpi=300,
+    "dtree.svg",
+    format="svg",
     bbox_inches="tight",
     pad_inches=0.3
 )
