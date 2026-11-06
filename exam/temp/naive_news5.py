@@ -15,7 +15,7 @@ y_train = train.target
 y_test = test.target
 
 
-#multi
+#multinomial
 multi = MultinomialNB()
 multi.fit(x_train,y_train)
 multi_pred = multi.predict(x_test)
