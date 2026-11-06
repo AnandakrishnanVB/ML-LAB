@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.preprocessing import LabelEncoder
 
-# 1. Load dataset
 df = pd.read_excel("../../data/Online Retail.xlsx")
 
 # 2. Preprocessing
