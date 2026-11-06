@@ -38,7 +38,7 @@ def create_model(activation):
 
     return model
 
-# Step 5: Train Models with Different Activations
+# Step 5: Train Models with Different Activations.
 activations = ["sigmoid", "tanh", "relu"]
 
 results = {}
@@ -89,7 +89,7 @@ for act in activations:
         f"{results[act]['time']:.2f}"
     )
 
-# Step 7: Plot Training and Validation Accuracy
+# Step 7: Plot Training and Validation Accuracy.
 plt.figure(figsize=(10, 5))
 
 for act in activations:
