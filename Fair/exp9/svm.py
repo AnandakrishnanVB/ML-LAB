@@ -19,8 +19,8 @@ model.fit(X, y)
 
 # 3. Plot data points
 plt.scatter(
-    X[:, 0],
-    X[:, 1],
+    X[:, 0],#All the rows and first column
+    X[:, 1],#All the rows and second column
     c=y,
     cmap='coolwarm'
 )
