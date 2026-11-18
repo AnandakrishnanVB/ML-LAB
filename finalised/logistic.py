@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
+# Load the breast cancer dataset for classification.
 data = load_breast_cancer()
 
 x = data.data
